@@ -51,7 +51,7 @@ public class LoginController {
         return ResultFactory.buildSuccessResult(user);
     }
 
-    @PostMapping(value = "api/login")
+    @PostMapping(value = "/api/login")
     public Result login(@RequestBody User requestUser, HttpSession session) {
         String username = requestUser.getUsername();
         Subject subject = SecurityUtils.getSubject();
@@ -73,6 +73,11 @@ public class LoginController {
         subject.logout();
         String message = "成功登出";
         return ResultFactory.buildSuccessResult(message);
+    }
+
+    @GetMapping(value = "api/authentication")
+    public String authentication(){
+        return "身份认证成功";
     }
 
 }
