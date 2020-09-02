@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
@@ -14,6 +16,50 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     int id;
-    String username;
-    String password;
+
+    /**
+     * Username.
+     */
+    @NotEmpty(message = "用户名不能为空")
+    private String username;
+
+    /**
+     * Password.
+     */
+    private String password;
+
+    /**
+     * Salt for encoding.
+     */
+    private String salt;
+
+    /**
+     * Real name.
+     */
+    private String name;
+
+    /**
+     * Phone number.
+     */
+    private String phone;
+
+    /**
+     * Email address.
+     *
+     * A Email address can be null,but should be correct if exists.
+     */
+    @Email(message = "请输入正确的邮箱")
+    private String email;
+
+    /**
+     * User status.
+     */
+    private boolean enabled;
+
+    /**
+     * Transient property for storing role owned by current user.
+     */
+    /*@Transient
+    private List<AdminRole> roles;*/
+
 }
