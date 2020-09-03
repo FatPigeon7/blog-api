@@ -16,6 +16,11 @@ public class UserService {
         return null!=user;
     }
 
+    /**
+     * 通过用户名查询用户
+     * @param username 用户名
+     * @return User 用户
+     */
     public User getByName(String username) {
         return userDao.findByUsername(username);
     }
